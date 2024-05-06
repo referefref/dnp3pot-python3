@@ -1,19 +1,45 @@
-# dnp3pot
-Dnp3 Honeypot installation instructions.
+![image](https://github.com/referefref/dnp3pot-python3/assets/56499429/554cb2e0-26b3-4072-8f8a-39e592039f55)
 
-Prerequisites: You'll need to have logging/historian central server, IP and Port number ready.
-(Script was tested with Splunk)
 
-IF you dont require a central server, please insert any ip and any port number in order to run the script.
-Alternatively, please remove the rsyslog settings from the deployment script. 
+## Dnp3-Python3 Honeypot installation instructions
+IP and PORT are for your rsyslog server, original author had this connected to Splunk instance. Bogus settings can be provided here or rsyslog settings commented out from installation script if preferred.
 
+### MacOS
+```
+# Assuming brew is installed
+brew install python3 python3-pip git
+git clone https://github.com/referefref/dnp3pot-python3.git
+cd dnp3pot-python3
+pip3 install -r requirements.txt
+# Update installme.sh to your requirements
+./installme.sh <IP> <PORT>
+sudo python3 DNP3pot.py # sudo is needed by python3 sockets to get current ip
+```
+
+### Debian/Ubuntu/Kali
+```
+apt-get install python3 python3-pip git
+git clone https://github.com/referefref/dnp3pot-python3.git
+cd dnp3pot-python3
+pip3 install -r requirements.txt
+# Update installme.sh to your requirements
+./installme.sh <IP> <PORT>
+sudo python3 DNP3pot.py # sudo is needed by python3 sockets to get current ip
+```
+
+## DNP3Crafter
+``` This tool allows for execution of simple dnp3 checks and attacks for testing the honeypot - updated to python3 ```
+![image](https://github.com/referefref/dnp3pot-python3/assets/56499429/7db23115-482d-4eab-a153-2e6e902d01b7)
+
+
+## Logs
 Logs can be read localy with a command "tail -f /var/log/dnp3pot.log &"
+```
+2024-05-06 15:06:16,258 - __main__ - INFO - New connection from ('192.168.1.193', 51231)
 
-Installation procedure:
-1. Setup new cloud or local Linux image (tested on Kali 19 and Ubuntu 16.04)
-2. Copy content of install_dnp3pot.sh
-3. Issue "cat > installme.sh" in your linux termainal
-4. Paste to terminal, hit enter, then hit crtl + D
-5. Issue " chmod 777 installme.sh"
-6. Issue "./installme.sh <IP> <PORT>"
-7. Enjoy the ride!
+2024-05-06 15:06:16,267 - __main__ - INFO - Raw data received from ('192.168.1.193', 51231) rawdata: b'' encoding: None
+
+2024-05-06 15:10:50,075 - __main__ - INFO - New connection from ('192.168.1.193', 52882)
+
+2024-05-06 15:10:50,080 - __main__ - INFO - Raw data received from ('192.168.1.193', 52882) rawdata: b'\x05d\x05\xc3\x80\x01\x00\x00\x04\xc3\xa9!' encoding: utf-8
+```
