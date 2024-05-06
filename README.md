@@ -1,8 +1,9 @@
 ![image](https://github.com/referefref/dnp3pot-python3/assets/56499429/554cb2e0-26b3-4072-8f8a-39e592039f55)
 
 
-## Dnp3-Python3 Honeypot installation instructions
-- [***Originally created by David Olano (ArtWachowski)***](https://github.com/ArtWachowski/dnp3pot) and ported to Python3 by James Brine.
+## Dnp3-Python3 Honeypot
+- [***Originally created by Art Wachowski***](https://github.com/ArtWachowski/dnp3pot) and ported to Python3 by James Brine.
+- A python3 port of DNP3Crafter has been bundled with this repo for testing purposes, original is [***here***](https://github.com/hpcn-uam/DNP3Crafter) by David Olano.
 - IP and PORT are for your rsyslog server, original author had this connected to Splunk instance. Bogus settings can be provided here or rsyslog settings commented out from installation script if preferred.
 
 ### MacOS
