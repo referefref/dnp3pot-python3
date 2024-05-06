@@ -1,6 +1,7 @@
 __author__ = 'Nicholas Rodofile'
 from scapy.all import *
 import crcmod.predefined
+import struct
 
 '''
 # Copyright 2014-2016 N.R Rodofile
@@ -277,9 +278,8 @@ class DNP3(Packet):
 
     def show_data_chunks(self):
         for i in range(len(self.data_chunks)):
-            print "\tData Chunk", i, "Len", len(self.data_chunks[i]),\
-                "CRC (", hex(struct.unpack('<H', self.data_chunks_crc[i])[0]), ")"
-
+            print("\tData Chunk", i, "Len", len(self.data_chunks[i]),\
+                "CRC (", hex(struct.unpack('<H', self.data_chunks_crc[i])[0]), ")")
 
     def add_data_chunk(self, chunk):
         chunk = update_data_chunk_crc(chunk)
@@ -354,4 +354,3 @@ bind_layers(TCP, DNP3, dport=dnp3_port)
 bind_layers(TCP, DNP3, sport=dnp3_port)
 bind_layers(UDP, DNP3, dport=dnp3_port)
 bind_layers(UDP, DNP3, sport=dnp3_port)
-
