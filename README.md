@@ -2,8 +2,8 @@
 
 
 ## Dnp3-Python3 Honeypot installation instructions
-Originally created by David Olano (ArtWachowski) and ported to Python3 by James Brine.
-IP and PORT are for your rsyslog server, original author had this connected to Splunk instance. Bogus settings can be provided here or rsyslog settings commented out from installation script if preferred.
+- [***Originally created by David Olano (ArtWachowski)***](https://github.com/ArtWachowski/dnp3pot) and ported to Python3 by James Brine.
+- IP and PORT are for your rsyslog server, original author had this connected to Splunk instance. Bogus settings can be provided here or rsyslog settings commented out from installation script if preferred.
 
 ### MacOS
 ```
