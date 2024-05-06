@@ -82,7 +82,7 @@ if __name__ == "__main__":
         try:
             mysocket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
             mysocket.connect((ipdst,destport)) 
-            mysocket.send(packet)
+            mysocket.send(packet.encode())
             mysocket.close()
             i=i+1
             time.sleep(1.02) #Time lapse between packets (in seconds)
